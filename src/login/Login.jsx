@@ -19,7 +19,7 @@ function Login(props) {
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
-                    <button type="submit" onClick={loginHandler}>Login</button>
+                    <button type="submit" onClick={loginHandler}><Link to={'/products'}>Login</Link></button>
                 </form>
             </div>
         </Fragment>

@@ -11,24 +11,20 @@ function App() {
   const loginHandler = (event) => {
     event.preventDefault()
     if (userName && password) {
+      setIsformSubmited(true)
     }
   }
+
+  console.log('isFormSubmited', isFormSubmited);
   return (
     <Fragment>
-      {
-        isFormSubmited ? (<Product />) : (
-          <Login {...{ userName, setUserName, password, setPassword, loginHandler }} />
-        )
-      }
       <BrowserRouter>
-        {/* <Routes>
-          <Route path='/auth' element={<Login />} />
-        </Routes> */}
         <Routes>
-          <Route path='/products' element={<Product />} />
-        </Routes>
-        <Routes>
-          <Route path='/products/:productID' element={<ProductDetails />} />
+          <Route path='/' element={<Login {...{ userName, setUserName, password, setPassword, loginHandler }} />} />
+          <Fragment>
+            <Route path='/products' element={<Product />} />
+            <Route path='/products/:productID' element={<ProductDetails />} />
+          </Fragment>
         </Routes>
       </BrowserRouter>
 
