@@ -1,0 +1,31 @@
+.formComtainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  background-color: rgba(128, 128, 128, 0.386);
+  min-height: 250px;
+  width: auto;
+  border-radius: 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.form input {
+  width: 300px;
+  height: 35px;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+.form button {
+  border-radius: 10px;
+  height: 35px;
+  margin-bottom: 10px;
+}
