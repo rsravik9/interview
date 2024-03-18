@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useCallback, useEffect } from 'react'
 import Product from './products/Product';
 import Login from './login/Login';
 import ProductDetails from './products/components/productDetails';
@@ -12,6 +12,7 @@ function App() {
     event.preventDefault()
     if (userName && password) {
       setIsformSubmited(true)
+      localStorage.setItem("auth", 'userVarified')
     }
   }
 
@@ -20,15 +21,17 @@ function App() {
     <Fragment>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Login {...{ userName, setUserName, password, setPassword, loginHandler }} />} />
-          <Fragment>
-            <Route path='/products' element={<Product />} />
-            <Route path='/products/:productID' element={<ProductDetails />} />
-          </Fragment>
+          {!isFormSubmited && (
+            <Route path="/" element={<Login userName={userName} setUserName={setUserName} password={password} setPassword={setPassword} loginHandler={loginHandler} />} />
+          )}
+          {isFormSubmited && (
+            <Fragment>
+              <Route path="/products" element={<Product />} />
+              <Route path="/products/:productID" element={<ProductDetails />} />
+            </Fragment>
+          )}
         </Routes>
       </BrowserRouter>
-
-
     </Fragment>
   );
 }
