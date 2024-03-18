@@ -12,24 +12,18 @@ function App() {
     event.preventDefault()
     if (userName && password) {
       setIsformSubmited(true)
-      localStorage.setItem("auth", 'userVarified')
     }
   }
 
-  console.log('isFormSubmited', isFormSubmited);
   return (
     <Fragment>
       <BrowserRouter>
         <Routes>
-          {!isFormSubmited && (
-            <Route path="/" element={<Login userName={userName} setUserName={setUserName} password={password} setPassword={setPassword} loginHandler={loginHandler} />} />
-          )}
-          {isFormSubmited && (
-            <Fragment>
-              <Route path="/products" element={<Product />} />
-              <Route path="/products/:productID" element={<ProductDetails />} />
-            </Fragment>
-          )}
+          <Route path="/" element={<Login userName={userName} setUserName={setUserName} password={password} setPassword={setPassword} loginHandler={loginHandler} />} />
+          <Fragment>
+            <Route path="/products" element={<Product />} />
+            <Route path="/products/:productID" element={<ProductDetails />} />
+          </Fragment>
         </Routes>
       </BrowserRouter>
     </Fragment>
