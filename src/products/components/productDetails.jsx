@@ -1,12 +1,14 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { productList } from './productList';
 import calsses from './products.module.css';
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
-function ProductDetails() {
+function ProductDetails(props) {
+    const { setIsformSubmited } = props
+
     const [mineCartProducts, setMineCartProducts] = useState([])
     const individualProduct = useParams()
-    console.log('individualProduct', individualProduct.productID);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const searchedProduct = productList?.filter((ele) => ele.id == individualProduct.productID)
@@ -15,7 +17,10 @@ function ProductDetails() {
 
     return (
         <Fragment>
-            <h1 className={calsses.pageHeading}>Product Details</h1>
+            <div className={calsses.headingContainser}>
+                <h1 className={calsses.pageHeading}>Product Details</h1>
+                <button onClick={() => navigate(-1)}>Back</button>
+            </div>
             <div className={calsses.productContainer}>
                 {
                     mineCartProducts?.length ? mineCartProducts.map((item) => {

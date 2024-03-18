@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback, useEffect } from 'react'
+import React, { Fragment, useState } from 'react'
 import Product from './products/Product';
 import Login from './login/Login';
 import ProductDetails from './products/components/productDetails';
@@ -20,10 +20,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login userName={userName} setUserName={setUserName} password={password} setPassword={setPassword} loginHandler={loginHandler} />} />
-          <Fragment>
-            <Route path="/products" element={<Product />} />
-            <Route path="/products/:productID" element={<ProductDetails />} />
-          </Fragment>
+          {
+            isFormSubmited &&
+            <Fragment>
+              <Route path="/products" element={<Product {...{ setIsformSubmited }} />} />
+              <Route path="/products/:productID" element={<ProductDetails {...{ setIsformSubmited }} />} />
+            </Fragment>
+          }
+
         </Routes>
       </BrowserRouter>
     </Fragment>

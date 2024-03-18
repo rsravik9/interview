@@ -2,7 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { productList } from './components/productList'
 import calsses from './components/products.module.css'
 import { Link } from 'react-router-dom'
-function Product() {
+function Product(props) {
+    const { setIsformSubmited } = props
     const [productSearch, setProductSearch] = useState('')
     const [mineCartProducts, setMineCartProducts] = useState(productList)
 
@@ -20,7 +21,10 @@ function Product() {
 
     return (
         <Fragment>
-            <h1 className={calsses.pageHeading}>MineCart</h1>
+            <div className={calsses.headingContainser}>
+                <h1 className={calsses.pageHeading}>MineCart</h1>
+                <button onClick={() => setIsformSubmited(false)}><Link to={'/'} style={{ textDecoration: 'none' }}>Logout</Link></button>
+            </div>
             <div className={calsses.searchComponentSection}>
                 <input
                     type="search"
